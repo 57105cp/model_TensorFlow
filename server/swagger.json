@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Tensorflow Face Detection - Documentation",
+        "description": "API for face detection in videos",
+        "contact": {
+            "name": "Chandrahas Patel",
+            "email": "chandrahaspatel32@gmail.com",
+            "country": "India"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "paths": {
+        "/upload": {
+            "post": {
+                "tags": [
+                    "VideoModel"
+                ],
+                "summary": "Face Detection",
+                "description": "Detect faces in an uploaded video",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "video": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Video file to be uploaded"
+                                    }
+                                },
+                                "required": [
+                                    "video"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/octet-stream": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary",
+                                    "description": "Processed video with detected faces"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - No file uploaded"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        }
+    }
+}
